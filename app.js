@@ -164,80 +164,158 @@
 ///////////////////////////////////////////////////
 //TypeScript - Control Flow Statements
 ///////////////////////////////////////////////////
-// 1)  If Else Ternary Operator
-var x = 35;
-var y = 25;
-if (x > y) {
-    console.log("".concat(x, " buyuktur ").concat(y));
+// // 1)  If Else Ternary Operator
+// let x: number = 35;
+// let y: number = 25;
+// if (x > y){
+//     console.log(`${x} buyuktur ${y}`);
+// }else if (x < y){
+//     console.log(`${x} kucuktur ${y}`);
+// }else{
+//     console.log(`${x} esit ${y}`);
+// };
+// (x>y) ? console.log(`${x} buyuktur ${y}`) : console.log(`${x} kucuk veya esit ${y}`);
+// // 2)  Switch Case
+// let day : number = 5;
+// switch (day) {
+//     case 0:
+//         console.log("Pazar");
+//         break;
+//     case 1:
+//         console.log("Pazartesi");
+//         break;
+//     case 2:
+//         console.log("Salı");
+//         break;
+//     case 3:
+//         console.log("Çarşamba");
+//         break;
+//     case 4:
+//         console.log("Perşembe");
+//         break;
+//     case 5:
+//         console.log("Cuma");
+//         break;
+//     case 6:
+//         console.log("Cumartesi");
+//         break;
+//     default:
+//         console.log("1-7 arasinda sayi gir");
+//         break;
+// }
+// // 2)  For Loop
+// for(let i = 0; i<2; i++) {
+//     for(let j = 0; j < 3; j++) {
+//         for(let k = 0; k < 3; k++) {
+//             console.log(i, j, k);
+//         }
+//     }
+// }
+// let arr =[10,20,30,40,50];
+// for(let item of arr) {   // for of
+//     console.log(item)
+// }
+// let str = "Serhat Bülbül";
+// for (let char of str) {
+//     console.log(char);
+// }
+// for(let index in str){ // for in yapisi index degerini veriyor
+//     console.log(index);
+// }
+// // 3) While Loop
+// let counter = 5;
+// while(counter < 5) {
+//     console.log(counter);
+//     counter++;
+//     if(counter === 3) {
+//         break;
+//     }
+// }
+// // 4) Do While Loop
+// do {
+//     console.log(counter);
+//     counter++;
+// }while(counter<5)
+///////////////////////////////////////////////////
+//TypeScript - Functions
+///////////////////////////////////////////////////
+// 1)  Function
+function add(a, b) {
+    return a + b;
 }
-else if (x < y) {
-    console.log("".concat(x, " kucuktur ").concat(y));
+var toplam = add(2, 4);
+console.log(toplam);
+// void function
+function bastir() {
+    console.log("Serhat Bülbül");
 }
-else {
-    console.log("".concat(x, " esit ").concat(y));
+bastir();
+//examples
+function birlestir(isim, soyisim) {
+    return "".concat(isim, " +++ ").concat(soyisim);
 }
-;
-(x > y) ? console.log("".concat(x, " buyuktur ").concat(y)) : console.log("".concat(x, " kucuk veya esit ").concat(y));
-// 2)  Switch Case
-var day = 5;
-switch (day) {
-    case 0:
-        console.log("Pazar");
-        break;
-    case 1:
-        console.log("Pazartesi");
-        break;
-    case 2:
-        console.log("Salı");
-        break;
-    case 3:
-        console.log("Çarşamba");
-        break;
-    case 4:
-        console.log("Perşembe");
-        break;
-    case 5:
-        console.log("Cuma");
-        break;
-    case 6:
-        console.log("Cumartesi");
-        break;
-    default:
-        console.log("1-7 arasinda sayi gir");
-        break;
+var isim_soyisim = birlestir("Serhat", "Bulbul");
+console.log(isim_soyisim);
+//default parametre
+function birlestir2(isim, soyisim) {
+    if (soyisim === void 0) { soyisim = "Bulbul"; }
+    return "".concat(isim, " +++ ").concat(soyisim);
 }
-// 2)  For Loop
-for (var i = 0; i < 2; i++) {
-    for (var j = 0; j < 3; j++) {
-        for (var k = 0; k < 3; k++) {
-            console.log(i, j, k);
-        }
+var isim_soyisim2 = birlestir2("Serhat", "XXXXXX");
+console.log(isim_soyisim2);
+// 2) Optional Parametres - Arrow Function
+// Optional Parametres
+function carpim(a, b, c) {
+    if (typeof c !== 'undefined') {
+        return a * b * c;
     }
+    return a * b;
 }
-var arr = [10, 20, 30, 40, 50];
-for (var _i = 0, arr_1 = arr; _i < arr_1.length; _i++) { // for of
-    var item = arr_1[_i];
-    console.log(item);
+var sonuc = carpim(4, 4, 7);
+console.log(sonuc);
+//Arrow Function
+// function carpim2(a:number,b:number):number{
+//     return a*b;
+// }
+var carpim2 = function (a, b) { return a * b; };
+var sonuc2 = carpim2(4, 5);
+console.log(sonuc2);
+var bolme = function () { return console.log("Arrow function Serhat"); };
+bolme();
+function add2(a, b) {
+    return a + b;
 }
-var str = "Serhat Bülbül";
-for (var _a = 0, str_1 = str; _a < str_1.length; _a++) {
-    var char = str_1[_a];
-    console.log(char);
-}
-for (var index in str) { // for in yapisi index degerini veriyor
-    console.log(index);
-}
-// 3) While Loop
-var counter = 5;
-while (counter < 5) {
-    console.log(counter);
-    counter++;
-    if (counter === 3) {
-        break;
+var degisken = add2(4, 5);
+var degisken2 = add2("deg", "rad");
+//let degisken = add2("serhat",4) // burada overloading oluyor iki çeşit değişkeni aynı anda veremiyoruz
+console.log(degisken);
+// 4) Rest Parameters
+function toplamaIslemi() {
+    var sayilar = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        sayilar[_i] = arguments[_i];
     }
+    var toplam = 0;
+    sayilar.forEach(function (num) { return toplam += num; });
+    return toplam;
 }
-// 4) Do While Loop
-do {
-    console.log(counter);
-    counter++;
-} while (counter < 5);
+console.log(toplamaIslemi(1, 2, 3));
+function toplamaIslemi2(a) {
+    var sayilar = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        sayilar[_i - 1] = arguments[_i];
+    }
+    console.log(a);
+    var toplam = 0;
+    sayilar.forEach(function (num) { return toplam += num; });
+    return toplam;
+}
+console.log(toplamaIslemi2("Serhat", 1, 2, 3));
+function stringToplama(message) {
+    var names = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        names[_i - 1] = arguments[_i];
+    }
+    console.log(message + " " + names.join(", "));
+}
+stringToplama("Hello", "Serhat", "Ali", "Veli");
