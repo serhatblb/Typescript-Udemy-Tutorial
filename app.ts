@@ -410,5 +410,5 @@ console.log(toplamaIslemi2("Serhat",1,2,3));
 function stringToplama(message:string, ...names:string[]){
     console.log(message +" "+ names.join(", "));
 }
-
 stringToplama("Hello", "Serhat", "Ali", "Veli");
+console.log("commit duzeltme")

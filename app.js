@@ -314,3 +314,4 @@ function stringToplama(message) {
     console.log(message + " " + names.join(", "));
 }
 stringToplama("Hello", "Serhat", "Ali", "Veli");
+console.log("commit duzeltme");
