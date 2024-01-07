@@ -419,6 +419,48 @@ var department = new AccountingDepartment();
 department.printName();
 department.printMeeting();
 department.generateReports();
-///////////////////////////////////////////////////
-//TypeScript - Interface
-///////////////////////////////////////////////////
+function getFullName(person) {
+    return "".concat(person.firstName, " ").concat(person.lastName);
+}
+var person = {
+    firstName: "Serhat",
+    lastName: "Bülbül"
+};
+console.log(getFullName(person));
+function getFullName2(person2) {
+    if (person2.middleName2) {
+        return "".concat(person2.firstName2, " ").concat(person2.middleName2, " ").concat(person2.lastName2);
+    }
+    else {
+        return "".concat(person2.firstName2, " ").concat(person2.lastName2);
+    }
+}
+var person2 = {
+    firstName2: "Serhat",
+    lastName2: "Bülbül",
+    // middleName2: "Ali" 
+};
+console.log(getFullName2(person2));
+var person22 = {
+    firstName2: "Serhat",
+    lastName2: "Bülbül",
+    // middleName2: "Ali" 
+};
+// person22.firstName2 = "Ahmet" //readonly oldugu icin hata veriri
+console.log(person22);
+var format;
+format = function (str, isUpper) {
+    return isUpper ? str.toLocaleUpperCase() : str.toLocaleLowerCase();
+};
+console.log(format("serhat Bülbül", false)); // serhat bülbül
+console.log(format("serhat Bülbül", true)); // SERHAT BÜLBÜL
+var Employee = /** @class */ (function () {
+    function Employee(empNumber, name, gender) {
+        this.empNumber = empNumber;
+        this.name = name;
+        this.gender = gender;
+    }
+    return Employee;
+}());
+var employee = new Employee(4, "Serhat", "Erkek");
+console.log(employee);

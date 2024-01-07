@@ -527,3 +527,108 @@ department.generateReports();
 ///////////////////////////////////////////////////
 //TypeScript - Interface
 ///////////////////////////////////////////////////
+
+// 1) Interface Nasil Kullanilir ?
+interface PersonInterface {
+    firstName:string,
+    lastName:string
+} // functionda verilen typeleri önceden burda tanımlıyoruz
+
+function getFullName(person:PersonInterface){ //iterface i burda kullandık
+    return `${person.firstName} ${person.lastName}`;
+}
+let person = {
+    firstName: "Serhat",
+    lastName: "Bülbül"
+}
+console.log(getFullName(person));
+
+//2) Interface Optional Parameters Readonly Function Type
+interface PersonInterface2 {
+    readonly firstName2:string,
+    lastName2:string,
+    middleName2?: string // soru isareti ile optiona yapiyoruz
+}
+function getFullName2(person2:PersonInterface2){
+    if(person2.middleName2){
+        return `${person2.firstName2} ${person2.middleName2} ${person2.lastName2}`;
+    }else{
+        return `${person2.firstName2} ${person2.lastName2}`;
+    }
+    
+}
+let person2 = {
+    firstName2: "Serhat",
+    lastName2: "Bülbül",
+    // middleName2: "Ali" 
+}
+console.log(getFullName2(person2));
+
+let person22:PersonInterface2 = {
+    firstName2: "Serhat",
+    lastName2: "Bülbül",
+    // middleName2: "Ali" 
+}
+// person22.firstName2 = "Ahmet" //readonly oldugu icin hata veriri
+console.log(person22);
+
+// --------- Interface Function Type ---------------------
+interface StringFormat {
+    (str:string, isUpper:boolean):string
+}
+let format: StringFormat;
+format = function (str:string, isUpper:boolean){
+    return isUpper ? str.toLocaleUpperCase() : str.toLocaleLowerCase();
+}
+
+console.log(format("serhat Bülbül",false)); // serhat bülbül
+console.log(format("serhat Bülbül",true)); // SERHAT BÜLBÜL
+
+
+//3) Interface Extend Etme ve Bir Class a Interface Implemente Etme
+// interface IPerson {
+//     name:string;
+//     gender:string;
+// }
+
+// interface IEmployee extends IPerson {
+//     employeeNumber : number;
+// }
+
+// interface IWorker extends IPerson {
+//     employeeDepatments : string;
+// }
+
+// let employee: IEmployee = {
+//     employeeNumber:1,
+//     gender: "Erkek",
+//     name: "Serhat"
+// }
+// console.log(employee);
+
+// let employeDepartment: IWorker = {
+//     employeeDepatments:"Engineer",
+//     gender: "Erkek",
+//     name: "Serhat"
+// }
+// console.log(employeDepartment);
+
+interface IPerson {
+    name:string;
+    gender:string;
+}
+
+class Employee implements IPerson {
+    empNumber:number;
+    name:string;
+    gender:string;
+    constructor(empNumber:number, name:string, gender:string){
+        this.empNumber = empNumber;
+        this.name = name;
+        this.gender = gender;
+    }
+}
+let employee = new Employee(4,"Serhat", "Erkek");
+console.log(employee);
+
+
