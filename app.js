@@ -1,3 +1,18 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 ///////////////////////////////////////////////////
 //TypeScript - Data Types
 ///////////////////////////////////////////////////
@@ -314,4 +329,96 @@ function stringToplama(message) {
     console.log(message + " " + names.join(", "));
 }
 stringToplama("Hello", "Serhat", "Ali", "Veli");
-console.log("commit duzeltme");
+///////////////////////////////////////////////////
+//TypeScript - Classes
+///////////////////////////////////////////////////
+// 1) Class
+var Person = /** @class */ (function () {
+    function Person(ID, isim, soyisim) {
+        this.id = ID;
+        this.firstName = isim;
+        this.lastName = soyisim;
+    }
+    Person.prototype.getFullName = function () {
+        return "".concat(this.firstName, " ").concat(this.lastName);
+    };
+    return Person;
+}());
+var kisiBilgisi = new Person(22, "Serhat", "Bülbül");
+console.log(kisiBilgisi);
+console.log(kisiBilgisi.getFullName());
+console.log(kisiBilgisi.id);
+// 2) Access Modifiers(Public Private Prodected)
+// public : dışardan ulaşılabilir olur
+// private : class dısından ulaşılmaz olur
+// protected: inherit ettiği class tarafından ulaşılabilir
+// 3) Readonly
+var Araba = /** @class */ (function () {
+    function Araba(modelYili, marka) {
+        this.modelYili = modelYili;
+        this.marka = marka;
+    }
+    return Araba;
+}());
+var arabam = new Araba(2022, "Dacia");
+arabam.modelYili = 20333; // hata verir
+console.log(arabam);
+// 4) Inheritance
+var Employee = /** @class */ (function (_super) {
+    __extends(Employee, _super);
+    function Employee(id, firstName, lastName) {
+        return _super.call(this, id, firstName, lastName) || this; //super keyword ile Parent classın constructoru tetikleniyor
+    }
+    return Employee;
+}(Person));
+var employee = new Employee(222, "Serhat22", "Bülbül22");
+console.log(employee);
+console.log(employee.getFullName());
+// 5) Static Methods - Properties
+var Circle = /** @class */ (function () {
+    function Circle() {
+        this.pi = 3;
+        this.pi++; // pi'yi arttırdı
+        Circle.pi++; // static pi' yi arttırdı
+    }
+    Circle.hesapla = function (yaricap) {
+        return this.pi * yaricap * yaricap;
+    };
+    Circle.pi = 3.14;
+    return Circle;
+}());
+var objem = new Circle();
+var objem2 = new Circle();
+console.log(objem.pi);
+console.log(Circle.pi);
+console.log(Circle.hesapla(2));
+// 6) Abstract Class
+var Department = /** @class */ (function () {
+    function Department(name) {
+        this.name = name;
+    }
+    Department.prototype.printName = function () {
+        console.log("Department name: " + this.name);
+    };
+    return Department;
+}());
+var AccountingDepartment = /** @class */ (function (_super) {
+    __extends(AccountingDepartment, _super);
+    function AccountingDepartment() {
+        return _super.call(this, "Accounting and Auditing") || this;
+    }
+    AccountingDepartment.prototype.printMeeting = function () {
+        console.log("Accounting Department meets each Monday at 10am.");
+    };
+    AccountingDepartment.prototype.generateReports = function () {
+        console.log("Generating Accounting reports...");
+    };
+    return AccountingDepartment;
+}(Department));
+var department = new AccountingDepartment();
+department.printName();
+department.printMeeting();
+department.generateReports();
+///////////////////////////////////////////////////
+//TypeScript - Interface
+///////////////////////////////////////////////////

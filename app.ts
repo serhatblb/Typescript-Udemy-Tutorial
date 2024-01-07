@@ -411,4 +411,119 @@ function stringToplama(message:string, ...names:string[]){
     console.log(message +" "+ names.join(", "));
 }
 stringToplama("Hello", "Serhat", "Ali", "Veli");
-console.log("commit duzeltme")
+
+
+///////////////////////////////////////////////////
+//TypeScript - Classes
+///////////////////////////////////////////////////
+
+// 1) Class
+class Person{
+    id:number;
+    firstName:string;
+    lastName:string;
+
+    constructor(ID:number,isim:string,soyisim:string){
+        this.id = ID;
+        this.firstName = isim;
+        this.lastName = soyisim;
+    }
+
+    getFullName(){
+        return `${this.firstName} ${this.lastName}`;
+    }
+}
+
+let kisiBilgisi = new Person(22,"Serhat","Bülbül")
+console.log(kisiBilgisi);
+console.log(kisiBilgisi.getFullName());
+console.log(kisiBilgisi.id)
+
+// 2) Access Modifiers(Public Private Prodected)
+    // public : dışardan ulaşılabilir olur
+    // private : class dısından ulaşılmaz olur
+    // protected: inherit ettiği class tarafından ulaşılabilir
+
+// 3) Readonly
+class Araba {
+    readonly modelYili:number;
+    readonly marka:string;
+
+    constructor(modelYili:number,marka:string){
+        this.modelYili = modelYili;
+        this.marka = marka;
+    }
+}
+let arabam = new Araba(2022,"Dacia");
+arabam.modelYili = 20333; // hata verir
+console.log(arabam)
+
+
+// 4) Inheritance
+class Employee extends Person{ //child class Employee, parent class Person
+    constructor(id:number,firstName:string,lastName:string){
+        super(id,firstName,lastName); //super keyword ile Parent classın constructoru tetikleniyor
+    }
+}
+
+let employee = new Employee(222,"Serhat22","Bülbül22")
+console.log(employee)
+console.log(employee.getFullName())
+
+// 5) Static Methods - Properties
+class Circle {
+    static pi:number = 3.14;
+    pi = 3;
+
+    constructor(){
+        this.pi++; // pi'yi arttırdı
+        Circle.pi++; // static pi' yi arttırdı
+    }
+
+    static hesapla(yaricap:number){
+        return this.pi * yaricap*yaricap;
+    }
+}
+
+let objem = new Circle();
+let objem2 = new Circle();
+
+console.log(objem.pi);
+
+console.log(Circle.pi);
+console.log(Circle.hesapla(2));
+
+// 6) Abstract Class
+abstract class Department{
+    constructor(public name:string){}
+
+    printName(): void{
+        console.log("Department name: "+ this.name);
+    }
+
+    abstract printMeeting():void;
+}
+
+class AccountingDepartment extends Department{
+    constructor(){
+        super("Accounting and Auditing");
+    }
+
+    printMeeting():void{
+        console.log("Accounting Department meets each Monday at 10am.");
+    }
+
+    generateReports():void{
+        console.log("Generating Accounting reports...");
+    }
+} 
+
+let department = new AccountingDepartment();
+department.printName();
+department.printMeeting();
+department.generateReports();
+
+
+///////////////////////////////////////////////////
+//TypeScript - Interface
+///////////////////////////////////////////////////
